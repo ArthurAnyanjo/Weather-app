@@ -11,6 +11,8 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+Hosted on netlify app on (https://sparkling-crostata-6f1cd5.netlify.app/)
+
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
