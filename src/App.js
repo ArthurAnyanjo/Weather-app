@@ -7,7 +7,7 @@ function App() {
   const [location, setLocation] = useState('')
 
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=331bc59e269bdfac6214881ea98bed65`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=331bc59e269bdfac6214881ea98bed65`
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
@@ -23,36 +23,39 @@ function App() {
     <div className="app">
       <div className="search-bar">
         <input type="text" value={location} onChange={event => setLocation(event.target.value)}
-        placeholder="Enter Location"
-        onKeyPress={searchLocation}>
+          placeholder="Enter Location"
+          onKeyPress={searchLocation}>
         </input>
       </div>
       <div className="container">
         <div className="top">
           <div className="location">
-            <p>London</p>
+            <p>{data.name}</p>
           </div>
           <div className="temp">
-            <h1>17°c</h1>
+            {data.main ? <h1>{data.main.temp.toFixed()} °c</h1> : null}
           </div>
           <div className="description">
-            <p>Clouds</p>
+          {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
+
+          {data.name !== undefined &&
           <div className="bottom">
             <div className="feels">
-              <p>22°c</p>
-              <p>Feels like</p>
+              {data.main ? <p className="bold">{data.main.feels_like.toFixed()}°c</p>: null}
+              <p className="bold">Feels like</p>
             </div>
             <div className="humidity">
-              <p>57%</p>
-              <p>Humidity</p>
+              {data.main ?<p className="bold">{data.main.humidity}</p> : null }
+              <p className="bold">Humidity</p>
             </div>
             <div className="wind">
-              <p>3 MPH</p>
+             {data.wind ? <p className="bold">{data.wind.speed} MPH</p> : null}
               <p className="bold">Wind Speed</p>
             </div>
           </div>
-        </div>
+}
+        </div>         
       </div>
     </div>
   );
